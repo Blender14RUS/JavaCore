@@ -1,5 +1,8 @@
 package firstTask;
 
+import firstTask.utils.Coordinate;
+import firstTask.utils.Rectangle;
+
 public class IntersectionArea {
     public static void main(String[] args) {
         //calc of the intersection area rectangles in the independent of the sign

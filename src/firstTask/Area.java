@@ -1,5 +1,7 @@
 package firstTask;
 
+import firstTask.utils.Coordinate;
+
 public class Area {
     public static void main(String[] args) {
         Coordinate first = new Coordinate(0.5, -2.0);

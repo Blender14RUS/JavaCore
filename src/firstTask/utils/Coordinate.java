@@ -1,4 +1,4 @@
-package firstTask;
+package firstTask.utils;
 
 public class Coordinate{
     private double x;

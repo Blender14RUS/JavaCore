@@ -1,4 +1,4 @@
-package firstTask;
+package firstTask.utils;
 
 public class Rectangle {
     //hourly, starting with lower left
