@@ -1,15 +1,15 @@
 package firstTask.utils;
 
-public class Coordinate{
+public class Point {
     private double x;
     private double y;
 
-    public Coordinate() {
+    public Point() {
         this.x = 0;
         this.y = 0;
     }
 
-    public Coordinate(double x, double y) {
+    public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -24,7 +24,7 @@ public class Coordinate{
 
     public void setX(double x) {
         this.x = x;
-}
+    }
 
     public void setY(double y) {
         this.y = y;

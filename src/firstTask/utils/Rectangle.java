@@ -2,75 +2,75 @@ package firstTask.utils;
 
 public class Rectangle {
     //hourly, starting with lower left
-    private Coordinate a;
-    private Coordinate b;
-    private Coordinate c;
-    private Coordinate d;
+    private Point a;
+    private Point b;
+    private Point c;
+    private Point d;
 
     public Rectangle() {
-        this.a = new Coordinate(0, 0);
-        this.b = new Coordinate(0, 0);
-        this.c = new Coordinate(0, 0);
-        this.d = new Coordinate(0, 0);
+        this.a = new Point(0, 0);
+        this.b = new Point(0, 0);
+        this.c = new Point(0, 0);
+        this.d = new Point(0, 0);
     }
 
-    public Rectangle(Coordinate first, Coordinate second) {
+    public Rectangle(Point first, Point second) {
         if ((first.getX() < second.getX()) && (first.getY() < second.getY())){
             this.a = first;
             this.c = second;
-            this.b = new Coordinate(first.getX(), second.getY());
-            this.d = new Coordinate(second.getX(), first.getY());
+            this.b = new Point(first.getX(), second.getY());
+            this.d = new Point(second.getX(), first.getY());
         }
         else if((second.getX() < first.getX()) && (second.getY() < first.getY())){
             this.a = second;
             this.c = first;
-            this.d = new Coordinate(first.getX(), second.getY());
-            this.b = new Coordinate(second.getX(), first.getY());
+            this.d = new Point(first.getX(), second.getY());
+            this.b = new Point(second.getX(), first.getY());
         }
         else{
             if (first.getY() > second.getY()) {
                 this.b = first;
                 this.d = second;
-                this.c = new Coordinate(second.getX(), first.getY());
-                this.a = new Coordinate(first.getX(), second.getY());
+                this.c = new Point(second.getX(), first.getY());
+                this.a = new Point(first.getX(), second.getY());
             }
             else{
                 this.b = second;
                 this.d = first;
-                this.a = new Coordinate(second.getX(), first.getY());
-                this.c = new Coordinate(first.getX(), second.getY());
+                this.a = new Point(second.getX(), first.getY());
+                this.c = new Point(first.getX(), second.getY());
             }
         }
     }
 
-    public Coordinate getA() {
+    public Point getA() {
         return a;
     }
 
-    public Coordinate getB() {
+    public Point getB() {
         return b;
     }
 
-    public Coordinate getC() {
+    public Point getC() {
         return c;
     }
 
-    public Coordinate getD() {
+    public Point getD() {
         return d;
     }
 
-    public void setCoordinate(Coordinate first, Coordinate second) {
+    public void setCoordinate(Point first, Point second) {
         if (first.getX() < second.getX()){
             this.a = first;
             this.c = second;
-            this.b = new Coordinate(first.getX(), second.getY());
-            this.d = new Coordinate(second.getX(), first.getY());
+            this.b = new Point(first.getX(), second.getY());
+            this.d = new Point(second.getX(), first.getY());
         }
         else {
             this.b = first;
             this.d = second;
-            this.c = new Coordinate(second.getX(), first.getY());
-            this.a = new Coordinate(first.getX(), second.getY());
+            this.c = new Point(second.getX(), first.getY());
+            this.a = new Point(first.getX(), second.getY());
         }
     }
 }

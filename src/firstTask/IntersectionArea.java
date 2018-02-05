@@ -1,16 +1,17 @@
 package firstTask;
 
-import firstTask.utils.Coordinate;
+import firstTask.utils.Point;
 import firstTask.utils.Rectangle;
 
 public class IntersectionArea {
-    public static void main(String[] args) {
+    static public void main(String[] args) {
         //calc of the intersection area rectangles in the independent of the sign
-        Rectangle rectangle_1 = new Rectangle(new Coordinate(-5, 5), new Coordinate(0, 0));
-        Rectangle rectangle_2 = new Rectangle(new Coordinate(-5, -5), new Coordinate(1,1));
+        Rectangle rectangle_1 = new Rectangle(new Point(-5, 5), new Point(0, 0));
+        Rectangle rectangle_2 = new Rectangle(new Point(-5, -5), new Point(1,1));
         System.out.println("IntersectionArea: " + Area(rectangle_1, rectangle_2));
 
     }
+
 
     static double Area(Rectangle first, Rectangle second){
         double x = 0, x1 = 0;
