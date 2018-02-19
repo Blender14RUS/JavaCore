@@ -7,6 +7,7 @@ public class Area {
         Point first = new Point(0.5, -2.0);
         Point second = new Point(-1.5, -1.0);
         System.out.println("Area: " + square(first, second));
+        
     }
 
     static double square(Point first, Point second){
