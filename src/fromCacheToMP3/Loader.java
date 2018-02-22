@@ -18,29 +18,29 @@ public class Loader {
         Files.createDirectories(saveDirectory);
         Path dataFolder = Paths.get(pathToCacheFolder);
         //"f_*" - glob: filter out unnecessary files (data, index, etc)
-        DirectoryStream<Path> stream = Files.newDirectoryStream(dataFolder, "f_*");
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dataFolder, "f_*");) {
+            for (Path file : stream) {
+                //use try with resources / so we don't have close()
+                try (InputStream inputStream = Files.newInputStream(file);
+                     BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);) {
 
-        for (Path file : stream) {
-            //use try with resources / so we don't have close()
-            try (InputStream inputStream = Files.newInputStream(file);
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);){
+                    byte[] buffer = new byte[(int) Files.size(file)];
+                    bufferedInputStream.read(buffer);
 
-                byte[] buffer = new byte[(int) Files.size(file)];
-                bufferedInputStream.read(buffer);
-
-                if (checkHeader(buffer)) {
-                    System.out.println("header: " + file.getFileName());
-                    filename = file.getFileName() + ".mp3";
-                    try (OutputStream outputStream = Files.newOutputStream(Paths.get(saveDirectory + "\\" + filename), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);) {
-                        bufferedOutputStream.write(buffer);
-                    }
-                } else {
-                    if (filename == null) continue;
-                    System.out.println(file.getFileName() + " size: " + Files.size(file));
-                    try (OutputStream outputStream = Files.newOutputStream(Paths.get(saveDirectory + "\\" + filename), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);) {
-                        bufferedOutputStream.write(buffer);
+                    if (checkHeader(buffer)) {
+                        System.out.println("header: " + file.getFileName());
+                        filename = file.getFileName() + ".mp3";
+                        try (OutputStream outputStream = Files.newOutputStream(Paths.get(saveDirectory + "\\" + filename), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);) {
+                            bufferedOutputStream.write(buffer);
+                        }
+                    } else {
+                        if (filename == null) continue;
+                        System.out.println(file.getFileName() + " size: " + Files.size(file));
+                        try (OutputStream outputStream = Files.newOutputStream(Paths.get(saveDirectory + "\\" + filename), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);) {
+                            bufferedOutputStream.write(buffer);
+                        }
                     }
                 }
             }
