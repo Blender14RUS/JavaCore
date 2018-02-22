@@ -8,9 +8,9 @@ import java.util.zip.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        Path zipName = Paths.get(System.getProperty("user.home") + "\\Desktop\\test.zip\\");
-//        File file = new File(System.getProperty("user.home") + "\\Desktop\\");
-//        unzip(zipName, file);
+        Path zipName = Paths.get(System.getProperty("user.home") + "\\Desktop\\test.zip\\");
+        File file = new File(System.getProperty("user.home") + "\\Desktop\\");
+        unzip(zipName, file);
         Path dataFolder = Paths.get(System.getProperty("user.home") + "\\Desktop\\skill-samples-java-master\\");
         Path zipFile = Paths.get(System.getProperty("user.home") + "\\Desktop\\archive.zip\\");
         zip(dataFolder, zipFile);
@@ -49,12 +49,9 @@ public class Main {
                     try (InputStream inputStream = Files.newInputStream(file);
                          BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);) {
                             zipFile.putNextEntry(new ZipEntry(file.subpath(dataFolder.getNameCount(), file.getNameCount()).toString()));
-                            //byte[] buffer = new byte[(int) Files.size(file)];
-                            //bufferedInputStream.read(buffer);
-                        while (bufferedInputStream.available() > 0) {
-                            zipFile.write(inputStream.read());
-                        }
-                            //zipFile.write(buffer);
+                            byte[] buffer = new byte[(int) Files.size(file)];
+                            bufferedInputStream.read(buffer);
+                            zipFile.write(buffer);
                             zipFile.closeEntry();
                     }
                     return FileVisitResult.CONTINUE;
