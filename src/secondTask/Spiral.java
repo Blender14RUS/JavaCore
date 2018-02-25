@@ -1,7 +1,7 @@
 package secondTask;
 
 //only symmetrical multidimensional arrays
-public class Main {
+public class Spiral {
     public static void main(String[] args){
         int[][] array = {{0,1,2,3},
                          {4,5,6,7},

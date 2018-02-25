@@ -5,18 +5,19 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.zip.*;
 
-public class Main {
+public class Archiver {
 
     public static void main(String[] args) throws IOException {
+        Archiver archiver = new Archiver();
         Path zipName = Paths.get(System.getProperty("user.home") + "\\Desktop\\test.zip\\");
         File file = new File(System.getProperty("user.home") + "\\Desktop\\");
-        unzip(zipName, file);
+        archiver.unzip(zipName, file);
         Path dataFolder = Paths.get(System.getProperty("user.home") + "\\Desktop\\skill-samples-java-master\\");
         Path zipFile = Paths.get(System.getProperty("user.home") + "\\Desktop\\archive.zip\\");
-        zip(dataFolder, zipFile);
+        archiver.zip(dataFolder, zipFile);
     }
 
-    public static void unzip(Path zipName, File directory) throws IOException {
+    public void unzip(Path zipName, File directory) throws IOException {
         try (InputStream inputStream = Files.newInputStream(zipName);
              BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
              ZipInputStream zipFile = new ZipInputStream(bufferedInputStream);) {
