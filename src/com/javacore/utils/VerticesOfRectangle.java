@@ -1,20 +1,20 @@
-package firstTask.utils;
+package com.javacore.utils;
 
-public class Rectangle {
+public class VerticesOfRectangle {
     //hourly, starting with lower left
     private Point a;
     private Point b;
     private Point c;
     private Point d;
 
-    public Rectangle() {
+    public VerticesOfRectangle() {
         this.a = new Point(0, 0);
         this.b = new Point(0, 0);
         this.c = new Point(0, 0);
         this.d = new Point(0, 0);
     }
 
-    public Rectangle(Point first, Point second) {
+    public VerticesOfRectangle(Point first, Point second) {
         if ((first.getX() < second.getX()) && (first.getY() < second.getY())){
             this.a = first;
             this.c = second;
@@ -44,33 +44,19 @@ public class Rectangle {
     }
 
     public Point getA() {
-        return a;
+        return this.a;
     }
 
     public Point getB() {
-        return b;
+        return this.b;
     }
 
     public Point getC() {
-        return c;
+        return this.c;
     }
 
     public Point getD() {
-        return d;
+        return this.d;
     }
 
-    public void setCoordinate(Point first, Point second) {
-        if (first.getX() < second.getX()){
-            this.a = first;
-            this.c = second;
-            this.b = new Point(first.getX(), second.getY());
-            this.d = new Point(second.getX(), first.getY());
-        }
-        else {
-            this.b = first;
-            this.d = second;
-            this.c = new Point(second.getX(), first.getY());
-            this.a = new Point(first.getX(), second.getY());
-        }
-    }
 }

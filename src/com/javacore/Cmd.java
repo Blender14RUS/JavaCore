@@ -1,4 +1,4 @@
-package simpleCMD;
+package com.javacore;
 
 import java.io.*;
 import java.nio.file.*;

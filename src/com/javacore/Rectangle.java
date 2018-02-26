@@ -1,19 +1,10 @@
-package firstTask;
+package com.javacore;
 
-import firstTask.utils.Point;
-import firstTask.utils.Rectangle;
+import com.javacore.utils.Point;
+import com.javacore.utils.VerticesOfRectangle;
 
-public class IntersectionArea {
-    static public void main(String[] args) {
-        //calc of the intersection area rectangles in the independent of the sign
-        Rectangle rectangle_1 = new Rectangle(new Point(-5, 5), new Point(0, 0));
-        Rectangle rectangle_2 = new Rectangle(new Point(-5, -5), new Point(1,1));
-        System.out.println("IntersectionArea: " + Area(rectangle_1, rectangle_2));
-
-    }
-
-
-    static double Area(Rectangle first, Rectangle second){
+public class Rectangle {
+    double intersectionArea(VerticesOfRectangle first, VerticesOfRectangle second){
         double x = 0, x1 = 0;
         double y = 0, y1 = 0;
         if ((second.getA().getX() >= first.getA().getX() && second.getA().getX() <= first.getD().getX())
@@ -35,5 +26,9 @@ public class IntersectionArea {
         }
 
         return ( Math.abs(x-x1)*Math.abs(y-y1) );
+    }
+
+    double area(Point first, Point second){
+        return ( Math.abs(first.getX()-second.getX())*Math.abs(first.getY()-second.getY()) );
     }
 }

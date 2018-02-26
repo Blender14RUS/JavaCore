@@ -1,4 +1,4 @@
-package firstTask.utils;
+package com.javacore.utils;
 
 public class Point {
     private double x;
@@ -15,11 +15,11 @@ public class Point {
     }
 
     public double getX() {
-        return x;
+        return this.x;
     }
 
     public double getY() {
-        return y;
+        return this.y;
     }
 
     public void setX(double x) {

@@ -1,15 +1,14 @@
-package fromCacheToMP3;
+package com.javacore;
 
 import java.io.*;
 import java.nio.file.*;
 
-
-public class Loader {
+public class CacheLoader {
     private String filename;
     private String pathToCacheFolder;
     private Path saveDirectory;
 
-    public Loader() {
+    public CacheLoader() {
         pathToCacheFolder = System.getProperty("user.home") + "\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Media Cache";
         saveDirectory = Paths.get(System.getProperty("user.home") + "\\Desktop\\cacheMP3\\");
     }
@@ -48,8 +47,8 @@ public class Loader {
     }
 
     private boolean checkHeader(byte[] data){
-        if (data[0] == (byte)73 && data[1] == (byte)68 && data[2] == (byte)51) return true;
-        if (data[0] == (byte)255 && data[1] == (byte)251 && data[2] == (byte)176) return true;
+        if (data[0] == (byte)73 && data[1] == (byte)68 && data[2] == (byte)51 && data[3] == (byte)4) return true;
+        if (data[0] == (byte)255 && data[1] == (byte)251 && data[3] == (byte)4) return true;
 
         return false;
     }
