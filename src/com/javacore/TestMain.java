@@ -4,11 +4,11 @@ import java.io.*;
 
 public class TestMain {
     public static void main(String[] args) throws IOException {
-        CacheLoader cacheLoader = new CacheLoader();
-        cacheLoader.load();
+//        CacheLoader cacheLoader = new CacheLoader();
+//        cacheLoader.load();
 
-//        Cmd cmd = new Cmd();
-//        cmd.start();
+        Cmd cmd = new Cmd();
+        cmd.start();
 
 //        Spiral spiral = new Spiral();
 //        int[][] array = {{0,1,2,3},
@@ -45,4 +45,6 @@ public class TestMain {
 //        VerticesOfRectangle rectangle_2 = new VerticesOfRectangle(new Point(2, -1), new Point(6,-2));
 //        System.out.println("Rectangle: " + rectangle.intersectionArea(rectangle_1, rectangle_2));
     }
+
 }
+
