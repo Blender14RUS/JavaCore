@@ -46,9 +46,9 @@ public class CacheLoader {
         }
     }
 
-    private boolean checkHeader(byte[] data){
-        if (data[0] == (byte)73 && data[1] == (byte)68 && data[2] == (byte)51 && data[3] == (byte)4) return true;
-        if (data[0] == (byte)255 && data[1] == (byte)251 && data[3] == (byte)4) return true;
+    private boolean checkHeader(byte[] data) {
+        if (data[0] == (byte) 73 && data[1] == (byte) 68 && data[2] == (byte) 51 && data[3] == (byte) 4) return true;
+        if (data[0] == (byte) 255 && data[1] == (byte) 251 && data[3] == (byte) 4) return true;
 
         return false;
     }

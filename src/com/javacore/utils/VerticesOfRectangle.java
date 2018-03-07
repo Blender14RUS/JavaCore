@@ -15,26 +15,23 @@ public class VerticesOfRectangle {
     }
 
     public VerticesOfRectangle(Point first, Point second) {
-        if ((first.getX() < second.getX()) && (first.getY() < second.getY())){
+        if ((first.getX() < second.getX()) && (first.getY() < second.getY())) {
             this.a = first;
             this.c = second;
             this.b = new Point(first.getX(), second.getY());
             this.d = new Point(second.getX(), first.getY());
-        }
-        else if((second.getX() < first.getX()) && (second.getY() < first.getY())){
+        } else if ((second.getX() < first.getX()) && (second.getY() < first.getY())) {
             this.a = second;
             this.c = first;
             this.d = new Point(first.getX(), second.getY());
             this.b = new Point(second.getX(), first.getY());
-        }
-        else{
+        } else {
             if (first.getY() > second.getY()) {
                 this.b = first;
                 this.d = second;
                 this.c = new Point(second.getX(), first.getY());
                 this.a = new Point(first.getX(), second.getY());
-            }
-            else{
+            } else {
                 this.b = second;
                 this.d = first;
                 this.a = new Point(second.getX(), first.getY());

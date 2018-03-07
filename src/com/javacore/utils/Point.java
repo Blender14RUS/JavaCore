@@ -18,12 +18,12 @@ public class Point {
         return this.x;
     }
 
-    public double getY() {
-        return this.y;
-    }
-
     public void setX(double x) {
         this.x = x;
+    }
+
+    public double getY() {
+        return this.y;
     }
 
     public void setY(double y) {
