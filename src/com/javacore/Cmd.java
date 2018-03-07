@@ -45,12 +45,12 @@ public class Cmd {
 
             switch (argsList.get(0)){
                 case "cd":
-                    if (argsList.size() > 1 && checkPath(argsList.get(1))) {
+                    if (argsList.size() > 1) {
                         cd(argsList.get(1));
                     }
                     break;
                 case "dir":
-                    if (argsList.size() > 1 && checkPath(argsList.get(1)))
+                    if (argsList.size() > 1)
                         dir(argsList.get(1));
                     else
                         dir(currentPath);
@@ -59,26 +59,26 @@ public class Cmd {
                     if (argsList.size() > 2)
                         copy(argsList.get(1), argsList.get(2));
                     else
-                        System.out.print("Ошибка в синтаксисе команды.\n");
+                        System.out.print("Syntax error.\n");
                     break;
                 case "mkdir":
                     if (argsList.size() > 1)
                         mkdir(argsList.get(1));
                     else
-                        System.out.print("Ошибка в синтаксисе команды.\n");
+                        System.out.print("Syntax error.\n");
                     break;
                 case "move":
                     if (argsList.size() > 2)
                         move(argsList.get(1), argsList.get(2));
                     else
-                        System.out.print("Ошибка в синтаксисе команды.\n");
+                        System.out.print("Syntax error.\n");
                     break;
                 case "print":
-                    if (argsList.size() > 1 && checkPath(argsList.get(1)))
+                    if (argsList.size() > 1)
                         print(argsList.get(1));
                     break;
                 case "remove":
-                    if (argsList.size() > 1 && checkPath(argsList.get(1)))
+                    if (argsList.size() > 1)
                         remove(argsList.get(1));
                     break;
                 case "exit":
@@ -106,8 +106,12 @@ public class Cmd {
                     return FileVisitResult.CONTINUE;
                 }
             });
-        } catch (Exception e){
-            System.out.print("Ошибка удаления");
+        } catch (InvalidPathException e){
+            System.out.print("The system cannot find the path specified.\n");
+        } catch (IOException e) {
+            System.out.print("Error: could not find this item / you don't have permission to access.\n");
+        } catch (Exception e) {
+            System.out.print(e.getMessage() + "\n");
         }
     }
 
@@ -120,8 +124,12 @@ public class Cmd {
                     System.out.println(String.valueOf(line));
                 }
             }
+        } catch (InvalidPathException e){
+            System.out.print("The system cannot find the path specified.\n");
+        } catch (IOException e) {
+            System.out.print("Access denied.\n");
         } catch (Exception e) {
-            System.out.print("Отказано в доступе.\n");
+            System.out.print(e.getMessage() + "\n");
         }
     }
 
@@ -144,8 +152,14 @@ public class Cmd {
 //                    Paths.get(currentPath, dirName);
 //                }
             Files.move(fromFile, toFile);
+        } catch (InvalidPathException e){
+            System.out.print("The system cannot find the path specified.\n");
+        } catch (FileAlreadyExistsException e) {
+            System.out.print("File of that name already exists.\n");
+        } catch (IOException e) {
+            System.out.print("Error reading, you don't have permission to access / invalid path to directory.\n");
         } catch (Exception e) {
-            System.out.print("Отказано в доступе, возможно файл с таким именем уже существует.\n");
+            System.out.print(e.getMessage() + "\n");
         }
     }
 
@@ -153,8 +167,10 @@ public class Cmd {
         try {
             File file = (includesFSRoots(dirName)) ? new File(dirName) : new File(currentPath, dirName);
             if (!file.mkdirs()) throw new Exception();
+        } catch (NullPointerException e) {
+            System.out.print("The directory name is invalid.\n");
         } catch (Exception e) {
-            System.out.print("Отказано в доступе.\n");
+            System.out.print(e.getMessage() + "\n");
         }
     }
 
@@ -177,8 +193,57 @@ public class Cmd {
                     return FileVisitResult.CONTINUE;
                 }
             });
+        } catch (InvalidPathException e){
+            System.out.print("The system cannot find the path specified.\n");
+        } catch (IOException e) {
+            System.out.print("Error copying, you don't have permission to access / invalid path to directory.\n");
         } catch (Exception e) {
-            System.out.print("Ошибка копирования, проверьте права доступа или путь к файлу.\n");
+            System.out.print(e.getMessage() + "\n");
+        }
+    }
+
+    private void dir(String path){
+        try {
+            Path dataFolder = Paths.get(path);
+            try (DirectoryStream<Path> stream = Files.newDirectoryStream(dataFolder)) {
+                for (Path file : stream) {
+                    Date date = new Date(file.toFile().lastModified());
+                    SimpleDateFormat formatForDate = new SimpleDateFormat("dd.MM.yyyy'  'hh:mm");
+                    System.out.print(formatForDate.format(date));
+                    if (file.toFile().isDirectory()) System.out.print("\t <DIR> \t");
+                    else System.out.print("\t\t\t");
+                    System.out.print(file.getFileName() + "\n");
+                }
+            }
+        } catch (InvalidPathException e){
+            System.out.print("The system cannot find the path specified.\n");
+        } catch (IOException e){
+            System.out.print("Error reading directory, you don't have permission to access / invalid path to directory.\n");
+        } catch (Exception e) {
+            System.out.print(e.getMessage() + "\n");
+        }
+    }
+
+    private void cd(String path){
+        try {
+            String temp = currentPath + "\\" + path;
+
+            for (File diskName : File.listRoots()) {
+                if (path.equals("..")) {
+                    temp = (Paths.get(currentPath).getParent() != null) ? Paths.get(currentPath).getParent().toString() : currentPath;
+                } else if (diskName != null && (path.equalsIgnoreCase(diskName.toString()) || (path + "\\").equalsIgnoreCase(diskName.toString()))) {
+                    temp = diskName.toString();
+                } else if (diskName != null && path.toLowerCase().startsWith(diskName.toString().toLowerCase())) {
+                    temp = path;
+                }
+            }
+
+            if (Paths.get(temp).toFile().isDirectory()) currentPath = Paths.get(temp).normalize().toString();
+            else System.out.print("Invalid directory name specified.\n");
+        } catch (InvalidPathException e){
+            System.out.print("The system cannot find the path specified.\n");
+        } catch (Exception e) {
+            System.out.print(e.getMessage() + "\n");
         }
     }
 
@@ -187,49 +252,5 @@ public class Cmd {
             if (diskName != null && fileName.toLowerCase().startsWith(diskName.toString().toLowerCase())) return true;
         }
         return false;
-    }
-
-    private void dir(String path){
-        Path dataFolder = Paths.get(path);
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dataFolder)) {
-            for (Path file : stream) {
-                Date date = new Date(file.toFile().lastModified());
-                SimpleDateFormat formatForDate = new SimpleDateFormat("dd.MM.yyyy'  'hh:mm");
-                System.out.print(formatForDate.format(date));
-                if (file.toFile().isDirectory()) System.out.print("\t <DIR> \t");
-                else System.out.print("\t\t\t");
-                System.out.print(file.getFileName() + "\n");
-            }
-        } catch (Exception e){
-            System.out.print("Ошибка чтения каталога, проверьте права доступа или путь к каталогу.\n");
-        }
-    }
-
-    private void cd(String path){
-        String temp = currentPath + "\\" + path;
-        for(File diskName : File.listRoots()) {
-            if (path.equals("..")){
-                temp = (Paths.get(currentPath).getParent() != null) ? Paths.get(currentPath).getParent().toString() : currentPath;
-            }
-            else if (diskName != null && (path.equalsIgnoreCase(diskName.toString()) || (path + "\\").equalsIgnoreCase(diskName.toString()))){
-                temp = diskName.toString();
-            }
-            else if(diskName != null && path.toLowerCase().startsWith(diskName.toString().toLowerCase()) ){
-                temp = path;
-            }
-        }
-
-        if(Paths.get(temp).toFile().isDirectory()) currentPath = Paths.get(temp).normalize().toString();
-        else System.out.print("Неверно задано имя каталога.\n");
-    }
-
-    private boolean checkPath(String path){
-        try {
-            Paths.get(path);
-        } catch (Exception e) {
-            System.out.print("Системе не удается найти указанный путь.\n");
-            return false;
-        }
-        return true;
     }
 }
