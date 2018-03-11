@@ -35,7 +35,7 @@ public class Archiver {
         }
     }
 
-    public void zip(Path dataPath, Path zipFilePath) throws IOException {
+    public void zip(final Path dataPath, Path zipFilePath) throws IOException {
         try (OutputStream outputStream = Files.newOutputStream(zipFilePath);
              BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
              ZipOutputStream zipFile = new ZipOutputStream(bufferedOutputStream)) {

@@ -211,8 +211,8 @@ public class Cmd {
 
     private void copy(String fileName, String copyName) {
         try {
-            Path sourceFile = (includesFSRoots(fileName)) ? Paths.get(fileName) : Paths.get(currentPath, fileName);
-            Path copyFile = (includesFSRoots(copyName)) ? Paths.get(copyName) : Paths.get(currentPath, copyName);
+            final Path sourceFile = (includesFSRoots(fileName)) ? Paths.get(fileName) : Paths.get(currentPath, fileName);
+            final Path copyFile = (includesFSRoots(copyName)) ? Paths.get(copyName) : Paths.get(currentPath, copyName);
 
             Files.walkFileTree(sourceFile, new SimpleFileVisitor<Path>() {
                 @Override

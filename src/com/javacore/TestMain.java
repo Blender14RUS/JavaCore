@@ -1,14 +1,20 @@
 package com.javacore;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestMain {
     public static void main(String[] args) throws IOException {
 //        CacheLoader cacheLoader = new CacheLoader();
 //        cacheLoader.load();
+        List<Object> list = new ArrayList<>();
+        while(true) {
+            list.add(new Object());
+        }
 
-        Cmd cmd = new Cmd();
-        cmd.start();
+//        Cmd cmd = new Cmd();
+//        cmd.start();
 
 //        Spiral spiral = new Spiral();
 //        int[][] array = spiral.testArray();
@@ -25,4 +31,3 @@ public class TestMain {
     }
 
 }
-
