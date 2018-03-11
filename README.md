@@ -1,3 +1,7 @@
+[![My trello](https://s8.hostingkartinok.com/uploads/images/2017/11/210cf3c439f53c23d63a85ccd947b907.png)](https://trello.com/b/e92fDBWo/blender14rus-github)   
+
+***
+
 ### JavaCore
 First Header | Second Header
 ------------ | -------------
