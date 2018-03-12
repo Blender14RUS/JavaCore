@@ -10,7 +10,7 @@ public class Main {
         ConnectH2 db = new ConnectH2();
         db.getConnection();
         List<Book> list = db.getBooks();
-        for (Book a: list){
+        for (Book a : list) {
             System.out.println(a.toString());
         }
         System.out.println("  --  ");

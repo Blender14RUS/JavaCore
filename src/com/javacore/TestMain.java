@@ -8,10 +8,6 @@ public class TestMain {
     public static void main(String[] args) throws IOException {
 //        CacheLoader cacheLoader = new CacheLoader();
 //        cacheLoader.load();
-        List<Object> list = new ArrayList<>();
-        while(true) {
-            list.add(new Object());
-        }
 
 //        Cmd cmd = new Cmd();
 //        cmd.start();

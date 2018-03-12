@@ -35,16 +35,16 @@ public class Book {
         return list_id_author;
     }
 
+    public void setList_id_author(List<Integer> list_id_author) {
+        this.list_id_author = list_id_author;
+    }
+
     public String getISBN() {
         return ISBN;
     }
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
-    }
-
-    public void setList_id_author(List<Integer> list_id_author) {
-        this.list_id_author = list_id_author;
     }
 
     public String getTitle() {

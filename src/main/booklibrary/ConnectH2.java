@@ -1,12 +1,11 @@
 package main.booklibrary;
 
-import java.security.PrivateKey;
+import main.booklibrary.model.Author;
+import main.booklibrary.model.Book;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import main.booklibrary.model.Author;
-import main.booklibrary.model.Book;
 
 public class ConnectH2 {
     // JDBC driver name and database URL
@@ -57,9 +56,9 @@ public class ConnectH2 {
             stmt.executeUpdate("INSERT INTO books (ISBN, id_author, title, year, date_upload, count_available) VALUES " +
                     String.format("('%s', '%s', %s, '%s', %s)", book.getISBN(), book.getTitle(), book.getYear(), book.getDate_upload(), book.getCount_available()));
             return true;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -79,9 +78,9 @@ public class ConnectH2 {
             book.setDate_upload(rs.getString("date_upload"));
             book.setCount_available(rs.getInt("count_available"));
             return book;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -105,9 +104,9 @@ public class ConnectH2 {
                 books.add(book);
             }
             return books;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -120,9 +119,9 @@ public class ConnectH2 {
             stmt.executeUpdate("DELETE FROM books WHERE id = " + id);
             stmt.executeUpdate("DELETE FROM BooksOfAuthor WHERE id_book = " + id);
             return true;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -134,14 +133,14 @@ public class ConnectH2 {
             stmt = conn.createStatement();
             stmt.executeUpdate("UPDATE books SET " + book.getFields() + "WHERE ID=" + id_book);
             stmt.executeUpdate("DELETE FROM BooksOfAuthor WHERE id_book = " + id_book);
-            for (Integer id_author : book.getList_id_author()){
+            for (Integer id_author : book.getList_id_author()) {
                 stmt.executeUpdate("INSERT INTO BooksOfAuthor (id_author, id_book) VALUES" + String.format("(%s, %s)", id_author, id_book));
             }
 
             return true;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -154,9 +153,9 @@ public class ConnectH2 {
             stmt.executeUpdate("INSERT INTO BooksOfAuthor (id_author, id_book) VALUES " +
                     String.format("(%s, %s)", id_author, id_book));
             return true;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -170,9 +169,9 @@ public class ConnectH2 {
             stmt.executeUpdate("INSERT INTO authors (first_name, last_name) VALUES " +
                     String.format("('%s', '%s')", author.getFirst_name(), author.getLast_name()));
             return true;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -189,9 +188,9 @@ public class ConnectH2 {
                 books.add(getBook(rs.getInt("id_book")));
             }
             return books;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -213,9 +212,9 @@ public class ConnectH2 {
                 authors.add(author);
             }
             return authors;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -232,9 +231,9 @@ public class ConnectH2 {
                 authors.add(rs.getInt("id_author"));
             }
             return authors;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

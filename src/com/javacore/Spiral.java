@@ -15,8 +15,8 @@ public class Spiral {
             }
         }
 
-        for (int[] row: resultArray) {
-            for (int element: row) {
+        for (int[] row : resultArray) {
+            for (int element : row) {
                 System.out.print(element + " ");
             }
             System.out.println();
