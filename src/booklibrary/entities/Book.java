@@ -1,4 +1,4 @@
-package main.booklibrary.model;
+package booklibrary.entities;
 
 import java.util.List;
 
@@ -22,6 +22,17 @@ public class Book {
         this.date_upload = date_upload;
         this.count_available = count_available;
     }
+
+    public Book(int id_book, String ISBN, List<Integer> list_id_author, String title, int year, String date_upload, int count_available) {
+        this.id_book = id_book;
+        this.ISBN = ISBN;
+        this.list_id_author = list_id_author;
+        this.title = title;
+        this.year = year;
+        this.date_upload = date_upload;
+        this.count_available = count_available;
+    }
+
 
     public int getId() {
         return id_book;
@@ -86,6 +97,14 @@ public class Book {
 
     public String getFields() {
         return String.format("ISBN='%s', title='%s', year=%s, date_upload='%s', count_available=%s", ISBN, title, year, date_upload, count_available);
+    }
+
+    public String getStringListIdAuthor() {
+        String temp = "";
+        for (Integer id : list_id_author) {
+            temp += id + " ";
+        }
+        return temp;
     }
 }
 

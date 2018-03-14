@@ -1,4 +1,4 @@
-package main.booklibrary.model;
+package booklibrary.entities;
 
 import java.util.List;
 
@@ -44,6 +44,10 @@ public class Author {
     @Override
     public String toString() {
         return String.format("Author[id_author=%s, Name=%s %s, books=%s]", id_author, first_name, last_name, books);
+    }
+
+    public String getFields() {
+        return String.format("first_name = %s, last_name = %s", first_name, last_name);
     }
 }
 //CREATE TABLE Authors (id_author INT NOT NULL PRIMARY KEY AUTO_INCREMENT, first_name CHAR(20), last_name CHAR(20));

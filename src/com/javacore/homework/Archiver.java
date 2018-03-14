@@ -1,4 +1,4 @@
-package com.javacore;
+package com.javacore.homework;
 
 import java.io.*;
 import java.nio.file.FileVisitResult;

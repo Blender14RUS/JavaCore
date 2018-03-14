@@ -1,4 +1,4 @@
-package com.javacore;
+package com.javacore.homework;
 
 import java.io.BufferedReader;
 import java.io.File;
