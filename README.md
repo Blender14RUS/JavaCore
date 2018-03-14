@@ -18,15 +18,7 @@ _intersectionArea_ - 2 прямоугольника (каждый строитс
 ***
 
 ### BookLibrary
-H2 DataBase   
-- [x] Book getBook(int id)
-- [x] List<Book> getBooks()
-- [x] boolean addBook(Book book)
-- [x] boolean deleteBook(int id)
-- [x] boolean updateBook(int id_book, Book book)
-- [x] boolean addAuthor(Author author)
-- [x] List<Author> getAuthors()
-- [x] List<Integer> getAuthors(int id_books)
-- [x] List<Book> getBooksOfAuthor(int id_author)
-- [x] boolean addBooksOfAuthor(int id_author, int id_book)
-- [ ] boolean updateAuthor(int id_author, Author author) (update data in BooksOfAuthor table)
+Simple Servlet + MySQL
+![](https://i.imgur.com/3VOGVIA.png)
+![](https://i.imgur.com/QgKo8t4.png)
+![](https://i.imgur.com/Rvlrr5K.png)
