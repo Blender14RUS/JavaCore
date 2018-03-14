@@ -6,7 +6,7 @@
 
     <groupId>com.javacore</groupId>
     <artifactId>javacore-project</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <version>0.0.1</version>
 
 
@@ -85,7 +85,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
+            
         </plugins>
     </build>
 
