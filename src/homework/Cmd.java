@@ -1,4 +1,4 @@
-package com.javacore.homework;
+package homework;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import homework.Archiver;
 
 public class Cmd {
     private String currentPath;
@@ -264,7 +265,7 @@ public class Cmd {
             String temp = currentPath + "\\" + path;
 
             for (File diskName : File.listRoots()) {
-                if (path.equals("..")) {
+                if (path.equals("src")) {
                     temp = (Paths.get(currentPath).getParent() != null) ? Paths.get(currentPath).getParent().toString() : currentPath;
                 } else if (diskName != null && (path.equalsIgnoreCase(diskName.toString()) || (path + "\\").equalsIgnoreCase(diskName.toString()))) {
                     temp = diskName.toString();

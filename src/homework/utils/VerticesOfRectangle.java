@@ -1,4 +1,4 @@
-package com.javacore.homework.utils;
+package homework.utils;
 
 public class VerticesOfRectangle {
     //hourly, starting with lower left

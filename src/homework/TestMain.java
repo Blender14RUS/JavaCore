@@ -1,4 +1,4 @@
-package com.javacore.homework;
+package homework;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ public class TestMain {
 //        CacheLoader cacheLoader = new CacheLoader();
 //        cacheLoader.load();
 
-//        Cmd cmd = new Cmd();
-//        cmd.start();
+        Cmd cmd = new Cmd();
+        cmd.start();
 
 //        Spiral spiral = new Spiral();
 //        int[][] array = spiral.testArray();

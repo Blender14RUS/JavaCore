@@ -1,7 +1,7 @@
-package com.javacore.homework;
+package homework;
 
-import com.javacore.homework.utils.Point;
-import com.javacore.homework.utils.VerticesOfRectangle;
+import homework.utils.Point;
+import homework.utils.VerticesOfRectangle;
 
 public class Rectangle {
     public double intersectionArea(VerticesOfRectangle first, VerticesOfRectangle second) {

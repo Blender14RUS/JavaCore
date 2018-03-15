@@ -1,4 +1,4 @@
-package com.javacore.homework.utils;
+package homework.utils;
 
 public class Point {
     private double x;

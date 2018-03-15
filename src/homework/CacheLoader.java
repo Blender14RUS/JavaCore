@@ -1,4 +1,4 @@
-package com.javacore.homework;
+package homework;
 
 import java.io.*;
 import java.nio.file.*;
