@@ -17,8 +17,8 @@ _intersectionArea_ - 2 прямоугольника (каждый строитс
 
 ***
 
-### BookLibrary
-"Simple" Servlet + MySQL
+### Simple service for Book Library management 
+Servlet + MySQL
 ![](https://i.imgur.com/3VOGVIA.png)
 ![](https://i.imgur.com/QgKo8t4.png)
 ![](https://i.imgur.com/Rvlrr5K.png)
