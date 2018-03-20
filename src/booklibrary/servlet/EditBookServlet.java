@@ -79,7 +79,6 @@ public class EditBookServlet extends HttpServlet {
             Arrays.asList(authors_srt.split(" ")).forEach(id -> list_id_author.add(Integer.parseInt(id)));
 
             book = new Book(id_book, isbn, list_id_author, title, year, date_upload, count_available);
-            System.out.println(book.toString());
 
             DBUtils.updateBook(conn, book);
         } catch (SQLException e) {

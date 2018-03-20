@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>Delete Author</title>
 </head>
+
 <body>
 
 <jsp:include page="_menu.jsp"></jsp:include>
 
-<h3>Home Page</h3>
+<h3>Delete Author</h3>
 
-This is Simple web library (jsp, servlet, jdbc)<br><br>
-<b>Nowadays work only (add/delete/update) book&author:</b><br>
-later will be added relationshipы author<->book<br>
+<p style="color: red;">${errorString}</p>
+<a href="authorList">Author List</a>
 
 <jsp:include page="_footer.jsp"></jsp:include>
 

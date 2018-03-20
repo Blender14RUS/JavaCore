@@ -8,27 +8,29 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i
-                        class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/">Simple Library</a>
-            </div>
-
-    <div class="collapse navbar-collapse"
-         id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-left">
-            <li class="active"></li>
-            <li><a href="${pageContext.request.contextPath}/bookList">Book List</a></li>
-            <li><a href="${pageContext.request.contextPath}/addBook">Add Book</a></li>
-        </ul>
-    </div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i
+                    class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/">Simple Library</a>
         </div>
-    </nav>
+
+        <div class="collapse navbar-collapse"
+             id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="active"></li>
+                <li><a href="${pageContext.request.contextPath}/bookList">Book List</a></li>
+                <li><a href="${pageContext.request.contextPath}/addBook">Add Book</a></li>
+                <li><a href="${pageContext.request.contextPath}/authorList">Author List</a></li>
+                <li><a href="${pageContext.request.contextPath}/addAuthor">Add Author</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 </div>
 </body>
 </html>

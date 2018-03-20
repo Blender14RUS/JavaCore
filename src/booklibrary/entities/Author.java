@@ -1,13 +1,24 @@
 package booklibrary.entities;
 
-import java.util.List;
-
 public class Author {
 
     private int id_author;
     private String first_name;
     private String last_name;
-    private List<Book> books;
+
+    public Author() {
+    }
+
+    public Author(String first_name, String last_name) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
+
+    public Author(int id_author, String first_name, String last_name) {
+        this.id_author = id_author;
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
 
     public int getId() {
         return id_author;
@@ -33,21 +44,13 @@ public class Author {
         this.last_name = last_name;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
     @Override
     public String toString() {
-        return String.format("Author[id_author=%s, Name=%s %s, books=%s]", id_author, first_name, last_name, books);
+        return String.format("Author[id_author=%s, Name=%s %s]", id_author, first_name, last_name);
     }
 
     public String getFields() {
-        return String.format("first_name = %s, last_name = %s", first_name, last_name);
+        return String.format("first_name = '%s', last_name = '%s'", first_name, last_name);
     }
 }
 //CREATE TABLE Authors (id_author INT NOT NULL PRIMARY KEY AUTO_INCREMENT, first_name CHAR(20), last_name CHAR(20));

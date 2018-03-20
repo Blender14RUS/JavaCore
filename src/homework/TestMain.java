@@ -3,14 +3,17 @@ package homework;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class TestMain {
     public static void main(String[] args) throws IOException {
 //        CacheLoader cacheLoader = new CacheLoader();
 //        cacheLoader.load();
 
-        Cmd cmd = new Cmd();
-        cmd.start();
+//        Cmd cmd = new Cmd();
+//        cmd.start();
+
 
 //        Spiral spiral = new Spiral();
 //        int[][] array = spiral.testArray();

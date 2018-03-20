@@ -147,10 +147,11 @@ public class DBUtils {
         stmt = conn.createStatement();
         rs = stmt.executeQuery("SELECT * FROM authors WHERE id_author = " + id_author);
         Author author = new Author();
-        author.setId(rs.getInt("id_author"));
-        author.setFirst_name(rs.getString("first_name"));
-        author.setLast_name(rs.getString("last_name"));
-        author.setBooks(getBooksOfAuthor(conn, rs.getInt("id_author")));
+        if (rs.next()) {
+            author.setId(rs.getInt("id_author"));
+            author.setFirst_name(rs.getString("first_name"));
+            author.setLast_name(rs.getString("last_name"));
+        }
         return author;
     }
 
@@ -161,13 +162,9 @@ public class DBUtils {
         stmt.executeUpdate("DELETE FROM BooksOfAuthor WHERE id_author = " + id_author);
     }
 
-    public static void updateAuthor(Connection conn, int id_author, Author author) throws SQLException {
+    public static void updateAuthor(Connection conn, Author author) throws SQLException {
         Statement stmt = null;
         stmt = conn.createStatement();
-        stmt.executeUpdate("UPDATE authors SET " + author.getFields() + "WHERE ID=" + id_author);
-        stmt.executeUpdate("DELETE FROM BooksOfAuthor WHERE id_author = " + id_author);
-        for (Book current_book : author.getBooks()) {
-            addBooksOfAuthor(conn, id_author, current_book.getId());
-        }
+        stmt.executeUpdate("UPDATE authors SET " + author.getFields() + " WHERE id_author = " + author.getId());
     }
 }

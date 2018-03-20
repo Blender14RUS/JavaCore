@@ -1,4 +1,4 @@
-package booklibrary.servlet;
+package servlet;
 
 import booklibrary.utils.DBUtils;
 
@@ -12,11 +12,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(urlPatterns = {"/deleteBook"})
-public class DeleteBookServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/deleteAuthor"})
+public class DeleteAuthorServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public DeleteBookServlet() {
+    public DeleteAuthorServlet() {
         super();
     }
 
@@ -24,12 +24,11 @@ public class DeleteBookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Connection conn = DBUtils.getStoredConnection(request);
-        String id_book = (String) request.getParameter("id_book");
+        String id_author = (String) request.getParameter("id_author");
 
         String errorString = null;
-
         try {
-            DBUtils.deleteBook(conn, Integer.parseInt(id_book));
+            DBUtils.deleteAuthor(conn, Integer.parseInt(id_author));
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
@@ -38,10 +37,10 @@ public class DeleteBookServlet extends HttpServlet {
         if (errorString != null) {
             request.setAttribute("errorString", errorString);
             RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/deleteBookErrorView.jsp");
+                    .getRequestDispatcher("/WEB-INF/views/deleteAuthorErrorView.jsp");
             dispatcher.forward(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/bookList");
+            response.sendRedirect(request.getContextPath() + "/authorList");
         }
 
     }
@@ -51,5 +50,5 @@ public class DeleteBookServlet extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
-
 }
+
